@@ -533,6 +533,19 @@ class RenderFlexyWrap extends RenderBox
         }
       }
 
+      // If the controller is not animating, the children are already laid out at
+      // their final sizes in _computeLayoutMetrics, so we can early return.
+      if (!_controller!.isAnimating) {
+        for (var c in childrenList) {
+          final pd = c.parentData as FlexyParentData;
+          final rect = result.rects[c]!;
+          pd.offset = rect.topLeft;
+          pd.actualRect = rect;
+        }
+        size = constraints.constrainDimensions(parentWidth, result.height);
+        return;
+      }
+
       double t = _controller!.isAnimating ? _controller!.value : 1.0;
       t = curve.transform(t);
 

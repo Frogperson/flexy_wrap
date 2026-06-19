@@ -503,7 +503,7 @@ class RenderFlexyWrap extends RenderBox
           pd.offset = rect.topLeft;
           pd.actualRect = rect;
         }
-        size = constraints.constrainDimensions(parentWidth, result.height);
+        size = constraints.constrainDimensions(result.width, result.height);
         return;
       }
 
@@ -542,7 +542,7 @@ class RenderFlexyWrap extends RenderBox
           pd.offset = rect.topLeft;
           pd.actualRect = rect;
         }
-        size = constraints.constrainDimensions(parentWidth, result.height);
+        size = constraints.constrainDimensions(result.width, result.height);
         return;
       }
 

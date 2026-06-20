@@ -573,16 +573,11 @@ class RenderFlexyWrap extends RenderBox
         }
       }
 
-      // Ensure the container bounds encompass both the animating bounds and the target bounds
-      double finalConstrainedWidth = actualMaxX > result.width
-          ? actualMaxX
-          : result.width;
-      double finalConstrainedHeight = actualMaxY > result.height
-          ? actualMaxY
-          : result.height;
+      // Set the container bounds to exactly match the animating children bounds.
+      // This allows parent alignment widgets (like Center) to smoothly animate.
       size = constraints.constrainDimensions(
-        finalConstrainedWidth,
-        finalConstrainedHeight,
+        actualMaxX,
+        actualMaxY,
       );
     } finally {
       _isLayingOut = false;
